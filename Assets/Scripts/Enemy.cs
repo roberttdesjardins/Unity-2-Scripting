@@ -17,6 +17,7 @@ public class Enemy : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate () {
 		if(targetTransform != null) {
+			// Moves the enemy towards the player
 			this.transform.position = Vector3.MoveTowards(this.transform.position, targetTransform.transform.position, Time.deltaTime * moveSpeed);
 		}
 	}
@@ -31,5 +32,11 @@ public class Enemy : MonoBehaviour {
 	public void Attack(Player player) {
 		player.health -= this.damage;
 		Destroy(this.gameObject);
+	}
+
+	public void Initialize(Transform target, float moveSpeed, int health) {
+		this.targetTransform = target;
+		this.moveSpeed = moveSpeed;
+		this.health = health;
 	}
 }

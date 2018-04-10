@@ -17,6 +17,7 @@ public class Player : MonoBehaviour {
 	}
 
 	void collidedWithEnemy(Enemy enemy) {
+		enemy.Attack (this);
 		if (health <= 0) {
 			// TODO
 		}
@@ -25,6 +26,8 @@ public class Player : MonoBehaviour {
 	// Triggers when two rigidbodies with colliders touch
 	void OnCollisionEnter(Collision col) {
 		Enemy enemy = col.collider.gameObject.GetComponent<Enemy> ();
-		collidedWithEnemy (enemy);
+		if (enemy) {
+			collidedWithEnemy (enemy);
+		}
 	}
 }
