@@ -1,9 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Player : MonoBehaviour {
 
+	public event Action<Player> onPlayerDeath;
 	public int health = 3;
 
 	// Use this for initialization
@@ -19,7 +21,9 @@ public class Player : MonoBehaviour {
 	void collidedWithEnemy(Enemy enemy) {
 		enemy.Attack (this);
 		if (health <= 0) {
-			// TODO
+			if (onPlayerDeath != null) {
+				onPlayerDeath (this);
+			}
 		}
 	}
 
